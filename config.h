@@ -228,6 +228,8 @@ static Shortcut shortcuts[] = {
 	{ MODKEY,               XK_z,           zoom,           {.f = +1} },
 	{ MODKEY,               XK_p,           selpaste,       {.i =  0} },
 	{ MODKEY,               XK_o,           clippaste,      {.i =  0} },
+	{ TERMMOD,              XK_A,           chalpha,        {.f = +0.1} },
+	{ TERMMOD,              XK_D,           chalpha,        {.f = -0.1} },
 	{ MODKEY,               XK_v,           externalpipe,   {.v = copymode } }
 };
 

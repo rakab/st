@@ -2364,7 +2364,7 @@ eschandle(uchar ascii)
 	case 'c': /* RIS -- Reset to initial state */
 		treset();
 		resettitle();
-		xloadcols();
+		xloadcols(alpha);
 		break;
 	case '=': /* DECPAM -- Application keypad */
 		xsetmode(1, MODE_APPKEYPAD);

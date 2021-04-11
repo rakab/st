@@ -28,7 +28,7 @@ void xclipcopy(void);
 void xdrawcursor(int, int, Glyph, int, int, Glyph);
 void xdrawline(Line, int, int, int);
 void xfinishdraw(void);
-void xloadcols(void);
+void xloadcols(float);
 int xsetcolorname(int, const char *);
 void xsettitle(char *);
 int xsetcursor(int);

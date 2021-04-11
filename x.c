@@ -67,6 +67,7 @@ static void clipcopy(const Arg *);
 static void clippaste(const Arg *);
 static void numlock(const Arg *);
 static void selpaste(const Arg *);
+static void chalpha(const Arg *);
 static void zoom(const Arg *);
 static void zoomabs(const Arg *);
 static void zoomreset(const Arg *);
@@ -297,6 +298,19 @@ void
 numlock(const Arg *dummy)
 {
 	win.mode ^= MODE_NUMLOCK;
+}
+
+void
+chalpha(const Arg *arg)
+{
+	alpha += arg->f;
+	if (alpha > 1)
+		alpha = 0;
+	if (alpha < 0)
+		alpha = 1;
+
+	xloadcols(alpha);
+	redraw();
 }
 
 void
@@ -751,7 +765,7 @@ xloadcolor(int i, const char *name, Color *ncolor)
 }
 
 void
-xloadcols(void)
+xloadcols(float alpha)
 {
 	int i;
 	static int loaded;
@@ -1097,7 +1111,10 @@ xinit(int cols, int rows)
 
 	/* colors */
 	xw.cmap = XCreateColormap(xw.dpy, parent, xw.vis, None);
-	xloadcols();
+	/* set alpha value of bg color */
+	if (opt_alpha)
+		alpha = strtof(opt_alpha, NULL);
+	xloadcols(alpha);
 
 	/* adjust fixed window geometry */
 	win.w = 2 * win.hborderpx + cols * win.cw;
